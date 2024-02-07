@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/any.proto";
+
+option go_package = ".;proto";
+
+message IdentityProviderReference{
+  IdentityProvider identityProvider = 1  [json_name = "provider"];
+  string externalId = 10  [json_name = "external_id"];
+  google.protobuf.Any metadata = 20 [json_name = "metadata"];
+}
+
+enum IdentityProvider {
+  IDP_GCP = 0;
+  IDP_OKTA = 1;
+}

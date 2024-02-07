@@ -1,0 +1,495 @@
+# Generated Code
+
+openapi: 3.0.3
+info:
+    title: Approvals API
+    version: 1.0.0
+servers:
+    - url: https://approvals.contoso.com
+      description: Production Server
+    - url: https://approvals.contso.com
+paths:
+    /api/v1/approvals:
+        post:
+            tags:
+                - ""
+            description: approvals
+            parameters:
+                - name: requestor_id
+                  in: query
+                  schema:
+                    type: string
+                - name: role_requested
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateApprovalResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+    /api/v1/approve:
+        post:
+            tags:
+                - ""
+            parameters:
+                - name: approver_id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApproveApprovalResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+    /api/v1/function:
+        get:
+            tags:
+                - ""
+            description: functions
+            parameters:
+                - name: function_id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetFunctionResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+        post:
+            tags:
+                - ""
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateFunctionResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+    /api/v1/role:
+        get:
+            tags:
+                - ""
+            description: roles
+            parameters:
+                - name: user_id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetRoleResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+        post:
+            tags:
+                - ""
+            parameters:
+                - name: role.role_id
+                  in: query
+                  schema:
+                    type: string
+                - name: role.role_name
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateRoleResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+    /api/v1/role-assignments:
+        get:
+            tags:
+                - ""
+            description: role assignments
+            parameters:
+                - name: user_id
+                  in: query
+                  schema:
+                    type: string
+                - name: role_id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetRoleAssignmentResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+        post:
+            tags:
+                - ""
+            parameters:
+                - name: role_assignment.id
+                  in: query
+                  schema:
+                    type: string
+                - name: role_assignment.user_id
+                  in: query
+                  schema:
+                    type: string
+                - name: role_assignment.role_id
+                  in: query
+                  schema:
+                    type: string
+                - name: role_assignment.function_id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateRoleAssignmentResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+    /api/v1/user:
+        get:
+            tags:
+                - ""
+            description: user management
+            parameters:
+                - name: user_id
+                  in: query
+                  schema:
+                    type: string
+                - name: email
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetUserResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+        post:
+            tags:
+                - ""
+            parameters:
+                - name: first_name
+                  in: query
+                  schema:
+                    type: string
+                - name: last_name
+                  in: query
+                  schema:
+                    type: string
+                - name: email
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateUserResponse'
+                "401":
+                    $ref: '#/components/responses/UnauthorizedError'
+                "429":
+                    $ref: '#/components/responses/TooManyRequests'
+                "500":
+                    $ref: '#/components/responses/ServerError'
+                "503":
+                    $ref: '#/components/responses/ServiceUnavailable'
+components:
+    schemas:
+        Any:
+            type: object
+            properties:
+                typeUrl:
+                    type: string
+                    description: 'A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one "/" character. The last segment of the URL''s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading "." is not accepted). In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows: * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a [google.protobuf.Type][]   value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the   URL, or have them precompiled into a binary to avoid any   lookup. Therefore, binary compatibility needs to be preserved   on changes to types. (Use versioned type names to manage   breaking changes.) Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com. As of May 2023, there are no widely used type server implementations and no plans to implement one. Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.'
+                value:
+                    type: string
+                    description: Must be a valid serialized protocol buffer of the above specified type.
+                    format: bytes
+            description: '`Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message. Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type. Example 1: Pack and unpack a message in C++.     Foo foo = ...;     Any any;     any.PackFrom(foo);     ...     if (any.UnpackTo(&foo)) {       ...     } Example 2: Pack and unpack a message in Java.     Foo foo = ...;     Any any = Any.pack(foo);     ...     if (any.is(Foo.class)) {       foo = any.unpack(Foo.class);     }     // or ...     if (any.isSameTypeAs(Foo.getDefaultInstance())) {       foo = any.unpack(Foo.getDefaultInstance());     }  Example 3: Pack and unpack a message in Python.     foo = Foo(...)     any = Any()     any.Pack(foo)     ...     if any.Is(Foo.DESCRIPTOR):       any.Unpack(foo)       ...  Example 4: Pack and unpack a message in Go      foo := &pb.Foo{...}      any, err := anypb.New(foo)      if err != nil {        ...      }      ...      foo := &pb.Foo{}      if err := any.UnmarshalTo(foo); err != nil {        ...      } The pack methods provided by protobuf library will by default use ''type.googleapis.com/full.type.name'' as the type URL and the unpack methods only use the fully qualified type name after the last ''/'' in the type URL, for example "foo.bar.com/x/y.z" will yield type name "y.z". JSON ==== The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example:     package google.profile;     message Person {       string first_name = 1;       string last_name = 2;     }     {       "@type": "type.googleapis.com/google.profile.Person",       "firstName": <string>,       "lastName": <string>     } If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message [google.protobuf.Duration][]):     {       "@type": "type.googleapis.com/google.protobuf.Duration",       "value": "1.212s"     }'
+        ApproveApprovalResponse:
+            type: object
+            properties:
+                approval_status:
+                    type: string
+                remaining_approvers:
+                    type: array
+                    items:
+                        type: string
+        CreateApprovalResponse:
+            type: object
+            properties:
+                approver_ids:
+                    type: array
+                    items:
+                        type: string
+        CreateFunctionResponse:
+            type: object
+            properties:
+                function_id:
+                    type: array
+                    items:
+                        type: string
+        CreateRoleAssignmentResponse:
+            type: object
+            properties:
+                role_assignment:
+                    $ref: '#/components/schemas/UserRoleAssignment'
+        CreateRoleResponse:
+            type: object
+            properties:
+                role:
+                    $ref: '#/components/schemas/Role'
+        CreateUserResponse:
+            type: object
+            properties:
+                user_id:
+                    type: string
+        Error:
+            type: object
+            properties:
+                type:
+                    example: bad-request
+                    type: string
+                    description: HTTP error type
+                code:
+                    example: 16384
+                    type: integer
+                    description: Numeric error code
+                title:
+                    example: Invalid address
+                    type: string
+                    description: Short error description
+                status:
+                    example: 400
+                    type: integer
+                    description: HTTP status of the error
+                detail:
+                    example: The requested address is invalid on this protocol
+                    type: string
+                    description: Long error description
+        Function:
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                description:
+                    type: string
+                created_at:
+                    type: string
+                updated_at:
+                    type: string
+        GetFunctionResponse:
+            type: object
+            properties:
+                functions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Function'
+        GetRoleAssignmentResponse:
+            type: object
+            properties:
+                role_assignment:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/UserRoleAssignment'
+        GetRoleResponse:
+            type: object
+            properties:
+                role:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Role'
+        GetUserResponse:
+            type: object
+            properties:
+                users:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/User'
+        IdentityProviderReference:
+            type: object
+            properties:
+                provider:
+                    type: string
+                external_id:
+                    type: string
+                metadata:
+                    $ref: '#/components/schemas/Any'
+        Role:
+            type: object
+            properties:
+                role_id:
+                    type: string
+                role_name:
+                    type: string
+        User:
+            type: object
+            properties:
+                id:
+                    type: string
+                user_type:
+                    type: string
+                identity_provider_reference:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/IdentityProviderReference'
+                role_ids:
+                    type: array
+                    items:
+                        type: string
+        UserRoleAssignment:
+            type: object
+            properties:
+                id:
+                    type: string
+                user_id:
+                    type: string
+                role_id:
+                    type: string
+                function_id:
+                    type: string
+    responses:
+        UnauthorizedError:
+            description: Invalid or expired token
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/Error'
+                    example: {"type": "unauthorized", "title": "Invalid Token", "status": 401}
+        TooManyRequests:
+            description: Rate limit exceeded
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/Error'
+                    example: {"type": "too-many-requests", "title": "Too Many Requests", "status": 429, "detail": "Request rate limits have been exceeded. Try again after a few seconds."}
+        ServerError:
+            description: An internal server error happened
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/Error'
+                    example: {"type": "internal-server-error", "title": "Internal Server Error", "status": 500}
+        ServiceUnavailable:
+            description: The resource you are trying to access is currently unavailable
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/Error'
+                    example: {"type": "unavailable", "title": "Unavailable", "status": 503}
+    securitySchemes:
+        bearerAuth:
+            type: http
+            description: |-
+                `Authorization: Bearer <Token>` header must be set to authenticate API requests.
+                You can create tokens in the "Configure"
+            scheme: bearer
+            bearerFormat: Opaque
+            x-default: 2go1YqUcuAr4WZ2-3WgSD3c7qpatZqQuNWhTVBldKZnTSUtw
+        apiKeyAuthHeader:
+            type: apiKey
+            description: '`X-API-Key: <Token>` header must be set to authenticate API requests.'
+            name: X-API-Key
+            in: header
+            x-default: 2go1YqUcuAr4WZ2-3WgSD3c7qpatZqQuNWhTVBldKZnTSUtw
+        apiKeyAuth:
+            type: apiKey
+            description: A query param `?apiKey=<Token>` also can be used to authenticate API requests.
+            name: apiKey
+            in: query
+            x-default: 2go1YqUcuAr4WZ2-3WgSD3c7qpatZqQuNWhTVBldKZnTSUtw
+security:
+    - bearerAuth: []
+      apiKeyAuthHeader: []
+tags:
+    - name: ""

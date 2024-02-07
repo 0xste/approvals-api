@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = ".;proto";
+
+message CreateApprovalRequest{
+  string requestor_id = 1 [json_name = "requestor_id"];
+  string role_requested = 10 [json_name = "role_requested"];
+}
+
+message CreateApprovalResponse{
+  repeated string approver_ids = 1   [json_name = "approver_ids"];
+}
+
+message ApproveApprovalRequest{
+  string approver_id = 1   [json_name = "approver_id"];
+}
+
+message ApproveApprovalResponse{
+  ApprovalStatus status = 1 [json_name = "approval_status"];
+  repeated string remainingApprovers = 10 [json_name = "remaining_approvers"];
+}
+
+enum ApprovalStatus{
+  StatusPending = 0;
+  StatusRejected = 1;
+  StatusApproved = 2;
+}

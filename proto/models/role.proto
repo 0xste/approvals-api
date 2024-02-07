@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = ".;proto";
+
+message Role{
+  string roleId = 1  [json_name = "role_id"];
+  string roleName = 10  [json_name = "role_name"];
+}
+
+message UserRoleAssignment{
+  string id = 1  [json_name = "id"];
+  string userId = 10  [json_name = "user_id"];
+  string roleId = 20 [json_name = "role_id"];
+  string functionId = 30 [json_name = "function_id"];
+}
+
+message Function{
+  string id = 1  [json_name = "id"];
+  string name = 10  [json_name = "name"];
+  string description = 20  [json_name = "description"];
+  string createdAt = 30  [json_name = "created_at"];
+  string updatedAt = 40  [json_name = "updated_at"];
+}
+
+message GetRoleRequest{
+  optional string userId = 1  [json_name = "user_id"];
+}
+
+message GetRoleResponse{
+  repeated Role role = 1  [json_name = "role"];
+}
+
+message CreateRoleRequest{
+  Role role = 1  [json_name = "role"];
+}
+
+message CreateRoleResponse{
+  Role role = 1  [json_name = "role"];
+}
+
+message GetRoleAssignmentRequest{
+  optional string userId = 1 [json_name = "user_id"];
+  optional string roleId = 10 [json_name = "role_id"];
+}
+
+message GetRoleAssignmentResponse{
+  repeated UserRoleAssignment roleAssignment = 1 [json_name = "role_assignment"];
+}
+
+message GetFunctionRequest{
+  optional string functionId = 1 [json_name = "function_id"];
+}
+
+message GetFunctionResponse{
+  repeated Function function  = 1 [json_name = "functions"];
+}
+
+message CreateFunctionRequest{
+  repeated Function function  = 1 [json_name = "function"];
+}
+
+message CreateFunctionResponse{
+  repeated string functionId  = 1 [json_name = "function_id"];
+}
+
+message CreateRoleAssignmentRequest{
+  UserRoleAssignment roleAssignment = 1 [json_name = "role_assignment"];
+}
+message CreateRoleAssignmentResponse{
+  UserRoleAssignment roleAssignment = 1 [json_name = "role_assignment"];
+}

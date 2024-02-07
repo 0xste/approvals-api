@@ -1,0 +1,11 @@
+with-expecter: True
+dir: "{{.InterfaceDir}}/mocks"
+mockname: "Mock{{.InterfaceNameSnake}}"
+outpkg: "mock_{{.PackageName}}"
+filename: "{{.InterfaceNameSnake}}.go"
+all: True
+packages:
+  # proto
+  github.com/0xste/approvals-api/proto/gen:
+    config:
+      recursive: True

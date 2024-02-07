@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = ".;proto";
+
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "models/user.proto";
+import "models/approval.proto";
+import "models/role.proto";
+
+service ApprovalService {
+  option (google.api.default_host) = "https://approvals.contoso.com";
+
+  // user management
+  rpc GetUser(GetUserRequest) returns(GetUserResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/user"
+    };
+  }
+  rpc CreateUser(CreateUserRequest) returns(CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/user"
+    };
+  }
+
+  // roles
+  rpc GetRoles(GetRoleRequest) returns(GetRoleResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/role"
+    };
+  }
+  rpc CreateRole(CreateRoleRequest) returns(CreateRoleResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/role"
+    };
+  }
+
+  // role assignments
+  rpc GetRoleAssignments(GetRoleAssignmentRequest) returns(GetRoleAssignmentResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/role-assignments"
+    };
+  }
+  rpc CreateRoleAssignment(CreateRoleAssignmentRequest) returns(CreateRoleAssignmentResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/role-assignments"
+    };
+  }
+
+  // functions
+  rpc GetFunctions(GetFunctionRequest) returns(GetFunctionResponse) {
+    option (google.api.http) = {
+      get: "/api/v1/function"
+    };
+  }
+  rpc CreateFunction(CreateFunctionRequest) returns(CreateFunctionResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/function"
+    };
+  }
+
+  // approvals
+  rpc CreateApproval(CreateApprovalRequest) returns(CreateApprovalResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/approvals"
+    };
+  }
+  rpc ApproveApproval(ApproveApprovalRequest) returns(ApproveApprovalResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/approve"
+    };
+  }
+
+
+
+}
